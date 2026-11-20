@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>JEE Main 2027 Syllabus &amp; Shift Marks Tracker</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#090D16',
+            surface: '#111827',
+            surfaceHover: '#161F33',
+            borderSubtle: '#1F2937',
+            phy: '#38BDF8',
+            math: '#A78BFA',
+            chem: '#34D399',
+            star: '#FBBF24',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Base Obsidian Dark Theme & Smooth Scrolling */
+    html, body {
+      background-color: #090D16;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Subtle Notebook-Inspired Grid Texture on Background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090D16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #374151;
+    }
+
+    /* Touch-Friendly Register Checkboxes (>= 42px tap target) */
+    .tick-btn {
+      min-width: 42px;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1.5px solid #283548;
+      background-color: #0D1320;
+      transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      user-select: none;
+    }
+    .tick-btn:hover {
+      border-color: #4B5563;
+      background-color: #162033;
+    }
+    .tick-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* Checked States per Type */
+    .tick-btn.checked-theory {
+      background-color: rgba(56, 189, 248, 0.15);
+      border-color: #38BDF8;
+      color: #38BDF8;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.18);
+    }
+    .tick-btn.checked-questions {
+      background-color: rgba(167, 139, 250, 0.15);
+      border-color: #A78BFA;
+      color: #A78BFA;
+      box-shadow: 0 0 12px rgba(167, 139, 250, 0.18);
+    }
+    .tick-btn.checked-pyq {
+      background-color: rgba(52, 211, 153, 0.18);
+      border-color: #34D399;
+      color: #34D399;
+      box-shadow: 0 0 14px rgba(52, 211, 153, 0.24);
+    }
+    .tick-btn.checked-mock {
+      background-color: rgba(52, 211, 153, 0.18);
+      border-color: #34D399;
+      color: #34D399;
+    }
+
+    /* Checkmark SVG Draw Animation */
+    @keyframes popTick {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .tick-icon-active {
+      animation: popTick 0.2s ease-out forwards;
+    }
+
+    /* Completed Chapter Row Emerald Glow */
+    .chapter-completed {
+      border-color: rgba(52, 211, 153, 0.42) !important;
+      background: linear-gradient(90deg, rgba(52, 211, 153, 0.07) 0%, rgba(17, 24, 39, 0.96) 55%) !important;
+      box-shadow: inset 3px 0 0 #34D399;
+    }
+
+    /* Star Toggle Button (>= 40px tap target) */
+    .star-btn {
+      min-width: 40px;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+      cursor: pointer;
+    }
+    .star-btn:hover {
+      background-color: rgba(251, 191, 36, 0.1);
+    }
+    .star-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* Revision Counter Pill (>= 40px height) */
+    .rev-pill {
+      min-width: 52px;
+      min-height: 40px;
+      padding: 0 10px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      border: 1px solid #283548;
+      background-color: #0D1320;
+      color: #9CA3AF;
+      transition: all 0.16s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .rev-pill:active {
+      transform: scale(0.94);
+    }
+    .rev-pill.rev-1 {
+      border-color: rgba(56, 189, 248, 0.45);
+      background-color: rgba(56, 189, 248, 0.12);
+      color: #38BDF8;
+    }
+    .rev-pill.rev-2 {
+      border-color: rgba(167, 139, 250, 0.5);
+      background-color: rgba(167, 139, 250, 0.14);
+      color: #A78BFA;
+    }
+    .rev-pill.rev-3 {
+      border-color: rgba(251, 191, 36, 0.55);
+      background-color: rgba(251, 191, 36, 0.15);
+      color: #FBBF24;
+    }
+
+    /* Clean Number Inputs without Spinners */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    /* Hide scrollbar for horizontal chip strips */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-gray-100 antialiased selection:bg-sky-500/30 selection:text-sky-200">
+
+  <!-- Main App Wrapper -->
+  <div class="relative z-10 max-w-7xl mx-auto px-3 sm:px-5 lg:px-8 pb-24">
+
+    <!-- 1. TOP HEADER BAR -->
+    <header class="pt-4 pb-3 border-b border-borderSubtle flex flex-wrap items-center justify-between gap-3">
+      <!-- App Title & Register Identity -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500/20 via-violet-500/20 to-emerald-500/20 border border-sky-400/30 flex items-center justify-center shadow-lg shadow-sky-950/30 shrink-0">
+          <!-- Notebook Check SVG Icon -->
+          <svg class="w-6 h-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white">JEE 2027 Master Tracker</h1>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">Offline Ready</span>
+          </div>
+          <p class="text-xs text-gray-400">Digital Revision Register · Syllabus &amp; 38 Shift Marks</p>
+        </div>
+      </div>
+
+      <!-- Right Status Widgets: Countdown, Streak & Backup -->
+      <div class="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+        <!-- Exam Countdown Pill (Clickable to edit target date) -->
+        <button id="countdownBtn" type="button" title="Click to customize target exam date"
+          class="min-h-[40px] px-3 py-1.5 rounded-xl bg-surface hover:bg-surfaceHover border border-borderSubtle flex items-center gap-2 transition cursor-pointer">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+          <div class="text-left">
+            <div class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold leading-none">JEE Jan '27</div>
+            <div id="countdownText" class="text-xs sm:text-sm font-mono font-bold text-sky-300 leading-tight mt-0.5">-- Days Left</div>
+          </div>
+        </button>
+
+        <!-- Daily Check-in Streak Pill -->
+        <div id="streakBadge" title="Daily study check-in streak"
+          class="min-h-[40px] px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center gap-1.5">
+          <span class="text-base leading-none">🔥</span>
+          <div>
+            <div class="text-[10px] uppercase tracking-wider text-amber-300/80 font-semibold leading-none">Streak</div>
+            <div id="streakCountText" class="text-xs sm:text-sm font-mono font-bold text-amber-300 leading-tight mt-0.5">1 Day</div>
+          </div>
+        </div>
+
+        <!-- Backup (Export/Import JSON) Button -->
+        <button id="openBackupModalBtn" type="button"
+          class="min-h-[40px] px-3.5 py-1.5 rounded-xl bg-surface hover:bg-surfaceHover border border-borderSubtle text-gray-200 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition cursor-pointer">
+          <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          </svg>
+          <span>Backup</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. OVERALL & SUBJECT PROGRESS CARDS -->
+    <section aria-label="Progress Overview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
+      <!-- Overall Syllabus -->
+      <div class="col-span-2 sm:col-span-1 bg-surface border border-borderSubtle rounded-2xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Overall Syllabus</span>
+          <span id="overallPctText" class="text-sm font-mono font-bold text-white">0%</span>
+        </div>
+        <div class="mt-2">
+          <div class="flex items-baseline justify-between mb-1.5">
+            <span id="overallFullDoneText" class="text-lg font-extrabold text-white">0 <span class="text-xs font-normal text-gray-400">/ 63 Full Done</span></span>
+          </div>
+          <div class="w-full h-2 bg-obsidian rounded-full overflow-hidden border border-gray-800">
+            <div id="overallBar" class="h-full bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-400 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physics Progress -->
+      <div class="bg-surface border border-borderSubtle rounded-2xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-phy flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-phy"></span>Physics
+          </span>
+          <span id="phyPctText" class="text-xs font-mono font-bold text-phy">0%</span>
+        </div>
+        <div class="mt-2">
+          <div id="phyCountText" class="text-base sm:text-lg font-extrabold text-white mb-1.5">0 <span class="text-xs font-normal text-gray-400">/ 23</span></div>
+          <div class="w-full h-2 bg-obsidian rounded-full overflow-hidden border border-gray-800">
+            <div id="phyBar" class="h-full bg-phy rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maths Progress -->
+      <div class="bg-surface border border-borderSubtle rounded-2xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-math flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-math"></span>Maths
+          </span>
+          <span id="mathPctText" class="text-xs font-mono font-bold text-math">0%</span>
+        </div>
+        <div class="mt-2">
+          <div id="mathCountText" class="text-base sm:text-lg font-extrabold text-white mb-1.5">0 <span class="text-xs font-normal text-gray-400">/ 19</span></div>
+          <div class="w-full h-2 bg-obsidian rounded-full overflow-hidden border border-gray-800">
+            <div id="mathBar" class="h-full bg-math rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chemistry Progress -->
+      <div class="bg-surface border border-borderSubtle rounded-2xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-chem flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-chem"></span>Chemistry
+          </span>
+          <span id="chemPctText" class="text-xs font-mono font-bold text-chem">0%</span>
+        </div>
+        <div class="mt-2">
+          <div id="chemCountText" class="text-base sm:text-lg font-extrabold text-white mb-1.5">0 <span class="text-xs font-normal text-gray-400">/ 21</span></div>
+          <div class="w-full h-2 bg-obsidian rounded-full overflow-hidden border border-gray-800">
+            <div id="chemBar" class="h-full bg-chem rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PYQs Completed Highlight Card -->
+      <div class="bg-surface border border-emerald-500/25 rounded-2xl p-3.5 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">PYQs Done</span>
+          <span id="pyqPctText" class="text-xs font-mono font-bold text-emerald-400">0%</span>
+        </div>
+        <div class="mt-2">
+          <div id="pyqCountText" class="text-base sm:text-lg font-extrabold text-white mb-1.5">0 <span class="text-xs font-normal text-gray-400">/ 63 Ch.</span></div>
+          <div class="w-full h-2 bg-obsidian rounded-full overflow-hidden border border-gray-800">
+            <div id="pyqBar" class="h-full bg-emerald-400 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TODAY'S PINNED TARGETS (COLLAPSIBLE DAILY CHECKLIST) -->
+    <section aria-label="Today's Pinned Targets" class="mt-3 bg-surface border border-borderSubtle rounded-2xl overflow-hidden">
+      <div class="px-4 py-2.5 flex items-center justify-between gap-2 bg-surfaceHover/50">
+        <button id="toggleTargetsBtn" type="button" class="flex items-center gap-2 text-left min-h-[36px] cursor-pointer">
+          <span class="text-amber-400 text-sm">📌</span>
+          <span class="text-xs sm:text-sm font-bold text-gray-100">Today's Pinned Targets</span>
+          <span id="targetsBadge" class="px-2 py-0.5 text-[11px] font-mono font-semibold rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/25">0/0</span>
+          <svg id="targetsChevron" class="w-4 h-4 text-gray-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <!-- Quick Add Target Form -->
+        <form id="addTargetForm" class="flex items-center gap-1.5 flex-1 max-w-md justify-end">
+          <input id="newTargetInput" type="text" maxlength="70" placeholder="Pin a daily goal (e.g. Rotation PYQs)..."
+            class="w-full sm:w-64 h-9 px-3 rounded-xl bg-obsidian border border-borderSubtle text-xs text-gray-100 placeholder-gray-500 focus:outline-none focus:border-amber-400/60" />
+          <button type="submit"
+            class="h-9 px-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-xs font-bold shrink-0 transition cursor-pointer">
+            + Pin
+          </button>
+        </form>
+      </div>
+      <div id="targetsBody" class="px-4 py-2.5 border-t border-borderSubtle flex flex-wrap gap-2">
+        <!-- Populated via JS -->
+      </div>
+    </section>
+
+    <!-- 4. STICKY MAIN NAVIGATION TABS -->
+    <nav aria-label="Main Sections" class="sticky top-0 z-30 mt-4 py-2.5 bg-obsidian/95 backdrop-blur-md border-b border-borderSubtle">
+      <div class="grid grid-cols-2 gap-2 p-1 bg-surface rounded-2xl border border-borderSubtle max-w-xl">
+        <button id="tabBtnSyllabus" type="button"
+          class="min-h-[44px] px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer bg-sky-500/15 text-sky-300 border border-sky-400/40 shadow-sm">
+          <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Syllabus Register</span>
+          <span id="navSyllabusCount" class="px-1.5 py-0.5 text-[11px] font-mono rounded-md bg-obsidian/80 text-gray-300">63</span>
+        </button>
+
+        <button id="tabBtnMocks" type="button"
+          class="min-h-[44px] px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer text-gray-400 hover:text-gray-200 border border-transparent">
+          <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          <span>Shift Marks (/300)</span>
+          <span id="navMocksCount" class="px-1.5 py-0.5 text-[11px] font-mono rounded-md bg-obsidian/80 text-gray-300">0/38</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: SYLLABUS TRACKER (EXACT REGISTER CHAPTERS)                   -->
+    <!-- =================================================================== -->
+    <main id="viewSyllabus" class="mt-4">
+      <!-- Subject Sub-Tabs & Add Chapter Button -->
+      <div class="flex flex-wrap items-center justify-between gap-2.5">
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+          <button type="button" data-sub="Physics" class="sub-tab-btn min-h-[42px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition cursor-pointer whitespace-nowrap">
+            Physics <span class="font-mono opacity-80" id="subCountPhysics">(23)</span>
+          </button>
+          <button type="button" data-sub="Maths" class="sub-tab-btn min-h-[42px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition cursor-pointer whitespace-nowrap">
+            Maths <span class="font-mono opacity-80" id="subCountMaths">(19)</span>
+          </button>
+          <button type="button" data-sub="Chemistry" class="sub-tab-btn min-h-[42px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition cursor-pointer whitespace-nowrap">
+            Chemistry <span class="font-mono opacity-80" id="subCountChemistry">(21)</span>
+          </button>
+          <button type="button" data-sub="All" class="sub-tab-btn min-h-[42px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition cursor-pointer whitespace-nowrap">
+            All Chapters <span class="font-mono opacity-80" id="subCountAll">(63)</span>
+          </button>
+        </div>
+
+        <button id="openAddChapterBtn" type="button"
+          class="min-h-[42px] px-3.5 py-2 rounded-xl bg-surface hover:bg-surfaceHover border border-borderSubtle text-xs sm:text-sm font-semibold text-sky-300 flex items-center gap-1.5 transition cursor-pointer">
+          <span>+ Add Chapter</span>
+        </button>
+      </div>
+
+      <!-- Search Bar & Quick Filter Pills -->
+      <div class="mt-3 flex flex-col md:flex-row md:items-center justify-between gap-2.5">
+        <!-- Search Input -->
+        <div class="relative flex-1 max-w-md">
+          <svg class="w-4 h-4 text-gray-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input id="chapterSearchInput" type="text" placeholder="Search chapter name or note..."
+            class="w-full h-10 pl-10 pr-8 rounded-xl bg-surface border border-borderSubtle text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-sky-400/60" />
+          <button id="clearChapterSearchBtn" type="button" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs px-1.5 py-0.5">✕</button>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+          <button type="button" data-cfilter="all" class="cfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">All</button>
+          <button type="button" data-cfilter="star" class="cfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">★ High Priority</button>
+          <button type="button" data-cfilter="pyq_pending" class="cfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">PYQ Pending</button>
+          <button type="button" data-cfilter="theory_done_pyq_left" class="cfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">Theory Done · PYQ Left</button>
+          <button type="button" data-cfilter="completed" class="cfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">100% Done ✓</button>
+        </div>
+      </div>
+
+      <!-- Desktop / Tablet Register Column Header -->
+      <div class="hidden md:grid md:grid-cols-12 items-center gap-2 mt-4 px-4 py-2.5 rounded-t-2xl bg-surfaceHover/90 border border-borderSubtle text-[11px] font-bold uppercase tracking-wider text-gray-400">
+        <div class="col-span-1 flex items-center gap-2">
+          <span>S.No</span>
+          <span class="text-amber-400">★</span>
+        </div>
+        <div class="col-span-4">Chapter Name</div>
+        <div class="col-span-1 text-center text-sky-400">Theory</div>
+        <div class="col-span-1 text-center text-violet-400">Questions</div>
+        <div class="col-span-1 text-center text-emerald-400">PYQ</div>
+        <div class="col-span-1 text-center text-amber-300">Rev</div>
+        <div class="col-span-3">PYQ Score / Quick Note</div>
+      </div>
+
+      <!-- Chapters Register List Container -->
+      <div id="chaptersListContainer" class="mt-2 md:mt-0 space-y-2 md:space-y-0 md:divide-y md:divide-borderSubtle md:border-x md:border-b md:border-borderSubtle md:rounded-b-2xl md:bg-surface/70">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: MOCK TEST & SHIFT MARKS TRACKER (/300)                       -->
+    <!-- =================================================================== -->
+    <main id="viewMocks" class="hidden mt-4">
+      <!-- Mock Analytics Strip -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+        <div class="bg-surface border border-borderSubtle rounded-2xl p-3.5">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Tests Attempted</div>
+          <div id="mockAttemptedStat" class="text-xl font-extrabold text-white mt-1 font-mono">0 <span class="text-xs font-normal text-gray-400">/ 38</span></div>
+        </div>
+        <div class="bg-surface border border-borderSubtle rounded-2xl p-3.5">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Average Score</div>
+          <div id="mockAvgStat" class="text-xl font-extrabold text-sky-300 mt-1 font-mono">-- <span class="text-xs font-normal text-gray-400">/ 300</span></div>
+        </div>
+        <div class="bg-surface border border-borderSubtle rounded-2xl p-3.5">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Highest Score</div>
+          <div id="mockHighStat" class="text-xl font-extrabold text-emerald-400 mt-1 font-mono">-- <span class="text-xs font-normal text-gray-400">/ 300</span></div>
+        </div>
+        <div class="bg-surface border border-borderSubtle rounded-2xl p-3.5">
+          <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Subject Avg (P / C / M)</div>
+          <div id="mockSubAvgStat" class="text-sm sm:text-base font-extrabold text-gray-200 mt-1.5 font-mono">-- / -- / --</div>
+        </div>
+      </div>
+
+      <!-- Mock Filter Pills, Search & Add Custom Mock -->
+      <div class="mt-3.5 flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+          <button type="button" data-mfilter="all" class="mfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">All Shifts</button>
+          <button type="button" data-mfilter="2026" class="mfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">2026 Shifts (19)</button>
+          <button type="button" data-mfilter="2025" class="mfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">2025 Shifts (19)</button>
+          <button type="button" data-mfilter="attempted" class="mfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">Attempted ✓</button>
+          <button type="button" data-mfilter="unattempted" class="mfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap">Unattempted</button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input id="mockSearchInput" type="text" placeholder="Search date (e.g. Jan 21, Apr)..."
+            class="w-full sm:w-56 h-10 px-3.5 rounded-xl bg-surface border border-borderSubtle text-xs sm:text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-sky-400/60" />
+          <button id="openAddMockBtn" type="button"
+            class="min-h-[40px] px-3.5 py-2 rounded-xl bg-surface hover:bg-surfaceHover border border-borderSubtle text-xs sm:text-sm font-semibold text-emerald-300 shrink-0 transition cursor-pointer">
+            + Add Mock
+          </button>
+        </div>
+      </div>
+
+      <!-- Desktop Table Header for Shifts -->
+      <div class="hidden lg:grid lg:grid-cols-12 items-center gap-2 mt-4 px-4 py-2.5 rounded-t-2xl bg-surfaceHover/90 border border-borderSubtle text-[11px] font-bold uppercase tracking-wider text-gray-400">
+        <div class="col-span-1">Done</div>
+        <div class="col-span-3">Exam Date &amp; Shift</div>
+        <div class="col-span-1 text-center text-phy">Phy /100</div>
+        <div class="col-span-1 text-center text-chem">Chem /100</div>
+        <div class="col-span-1 text-center text-math">Math /100</div>
+        <div class="col-span-1 text-center text-white">Total /300</div>
+        <div class="col-span-1 text-center text-amber-300">%ile / %</div>
+        <div class="col-span-3">Key Mistakes &amp; Analysis</div>
+      </div>
+
+      <!-- Shifts List Container -->
+      <div id="shiftsListContainer" class="mt-2 lg:mt-0 space-y-2.5 lg:space-y-0 lg:divide-y lg:divide-borderSubtle lg:border-x lg:border-b lg:border-borderSubtle lg:rounded-b-2xl lg:bg-surface/70">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALS (BACKUP / CUSTOM CHAPTER / CUSTOM MOCK / EXAM DATE)            -->
+  <!-- ===================================================================== -->
+
+  <!-- 1. Backup & Settings Modal -->
+  <div id="backupModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface border border-borderSubtle rounded-2xl max-w-lg w-full p-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-borderSubtle">
+        <h2 class="text-base sm:text-lg font-extrabold text-white">Backup, Sync &amp; Settings</h2>
+        <button type="button" data-close-modal="backupModal" class="w-9 h-9 rounded-xl bg-obsidian text-gray-400 hover:text-white flex items-center justify-center cursor-pointer">✕</button>
+      </div>
+
+      <div class="mt-4 space-y-4 text-sm">
+        <!-- Export / Copy -->
+        <div class="p-3.5 rounded-xl bg-obsidian border border-borderSubtle">
+          <div class="font-bold text-gray-200 mb-1">1. Save Progress Backup</div>
+          <p class="text-xs text-gray-400 mb-3">Download a JSON backup file or copy your progress code to transfer between phone, tablet, and laptop.</p>
+          <div class="flex flex-wrap gap-2">
+            <button id="exportJsonBtn" type="button" class="min-h-[40px] px-4 py-2 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 text-sky-300 text-xs font-bold cursor-pointer">
+              ⬇ Download JSON File
+            </button>
+            <button id="copyJsonBtn" type="button" class="min-h-[40px] px-4 py-2 rounded-xl bg-surface hover:bg-surfaceHover border border-borderSubtle text-gray-200 text-xs font-bold cursor-pointer">
+              📋 Copy Backup Text
+            </button>
+          </div>
+          <textarea id="backupClipboardArea" readonly class="sr-only" aria-hidden="true"></textarea>
+        </div>
+
+        <!-- Import -->
+        <div class="p-3.5 rounded-xl bg-obsidian border border-borderSubtle">
+          <div class="font-bold text-gray-200 mb-1">2. Restore from Backup</div>
+          <p class="text-xs text-gray-400 mb-2.5">Select a previously exported <code class="text-emerald-400">.json</code> file or paste backup JSON below:</p>
+          <input id="importFileInput" type="file" accept=".json,application/json"
+            class="block w-full text-xs text-gray-400 file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border file:border-emerald-400/40 file:text-xs file:font-bold file:bg-emerald-500/15 file:text-emerald-300 hover:file:bg-emerald-500/25 cursor-pointer mb-2.5" />
+          <div class="flex gap-2">
+            <input id="importPasteInput" type="text" placeholder="Or paste JSON string here..."
+              class="flex-1 h-10 px-3 rounded-xl bg-surface border border-borderSubtle text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-emerald-400" />
+            <button id="importPasteBtn" type="button" class="min-h-[40px] px-3.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 text-xs font-bold cursor-pointer">
+              Restore
+            </button>
+          </div>
+        </div>
+
+        <!-- Target Exam Date Setting -->
+        <div class="p-3.5 rounded-xl bg-obsidian border border-borderSubtle flex items-center justify-between gap-3">
+          <div>
+            <div class="font-bold text-gray-200 text-xs sm:text-sm">Target Exam Date</div>
+            <div class="text-[11px] text-gray-400">Used for the live days-left countdown</div>
+          </div>
+          <input id="targetDateInput" type="date"
+            class="h-10 px-3 rounded-xl bg-surface border border-borderSubtle text-xs font-mono text-sky-300 focus:outline-none focus:border-sky-400" />
+        </div>
+
+        <!-- Safe Two-Step Reset -->
+        <div class="pt-2 border-t border-borderSubtle flex items-center justify-between">
+          <span class="text-xs text-gray-500">Auto-saved in browser localStorage</span>
+          <button id="resetProgressBtn" type="button"
+            class="min-h-[38px] px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 text-xs font-bold cursor-pointer">
+            Reset All Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Add Custom Chapter Modal -->
+  <div id="addChapterModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface border border-borderSubtle rounded-2xl max-w-md w-full p-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-borderSubtle">
+        <h2 class="text-base font-extrabold text-white">+ Add Custom Chapter / Topic</h2>
+        <button type="button" data-close-modal="addChapterModal" class="w-9 h-9 rounded-xl bg-obsidian text-gray-400 hover:text-white flex items-center justify-center cursor-pointer">✕</button>
+      </div>
+      <form id="addChapterForm" class="mt-4 space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Subject</label>
+          <select id="customChapterSubject" class="w-full h-11 px-3 rounded-xl bg-obsidian border border-borderSubtle text-sm text-white focus:outline-none focus:border-sky-400">
+            <option value="Physics">Physics</option>
+            <option value="Maths">Maths</option>
+            <option value="Chemistry">Chemistry</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Chapter / Sub-Topic Name</label>
+          <input id="customChapterName" type="text" required maxlength="80" placeholder="e.g., Experimental Physics / Salt Analysis"
+            class="w-full h-11 px-3.5 rounded-xl bg-obsidian border border-borderSubtle text-sm text-white placeholder-gray-500 focus:outline-none focus:border-sky-400" />
+        </div>
+        <label class="flex items-center gap-2.5 cursor-pointer select-none">
+          <input id="customChapterStar" type="checkbox" class="w-5 h-5 rounded accent-amber-400" />
+          <span class="text-xs sm:text-sm text-amber-300 font-semibold">★ Mark as High Priority</span>
+        </label>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" data-close-modal="addChapterModal" class="min-h-[42px] px-4 rounded-xl bg-obsidian border border-borderSubtle text-xs font-bold text-gray-300 cursor-pointer">Cancel</button>
+          <button type="submit" class="min-h-[42px] px-5 rounded-xl bg-sky-500 hover:bg-sky-400 text-obsidian text-xs font-extrabold cursor-pointer">Add to Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Add Custom Mock Test Modal -->
+  <div id="addMockModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface border border-borderSubtle rounded-2xl max-w-md w-full p-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-borderSubtle">
+        <h2 class="text-base font-extrabold text-white">+ Add Custom Mock Test</h2>
+        <button type="button" data-close-modal="addMockModal" class="w-9 h-9 rounded-xl bg-obsidian text-gray-400 hover:text-white flex items-center justify-center cursor-pointer">✕</button>
+      </div>
+      <form id="addMockForm" class="mt-4 space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Mock Test Name / Date &amp; Shift</label>
+          <input id="customMockTitle" type="text" required maxlength="60" placeholder="e.g., 27 Jan 2024 — Shift 1 or Coaching Full Test 01"
+            class="w-full h-11 px-3.5 rounded-xl bg-obsidian border border-borderSubtle text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-400" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Category Tag</label>
+          <select id="customMockYear" class="w-full h-11 px-3 rounded-xl bg-obsidian border border-borderSubtle text-sm text-white focus:outline-none focus:border-emerald-400">
+            <option value="Custom">Custom / Coaching Mock</option>
+            <option value="2024">2024 PYQ Paper</option>
+            <option value="2026">2026 Extra</option>
+            <option value="2025">2025 Extra</option>
+          </select>
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" data-close-modal="addMockModal" class="min-h-[42px] px-4 rounded-xl bg-obsidian border border-borderSubtle text-xs font-bold text-gray-300 cursor-pointer">Cancel</button>
+          <button type="submit" class="min-h-[42px] px-5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-obsidian text-xs font-extrabold cursor-pointer">Add Mock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FLOATING "SAVED ✓" TOAST INDICATOR -->
+  <div id="saveToast"
+    class="fixed bottom-4 right-4 z-50 pointer-events-none opacity-0 translate-y-2 transition-all duration-200 px-3.5 py-2 rounded-full bg-emerald-950/95 border border-emerald-400/50 text-emerald-300 text-xs font-bold shadow-lg flex items-center gap-1.5">
+    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <span id="saveToastText">Saved ✓</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION LOGIC & PRE-LOADED SYLLABUS / 38-SHIFT DATA               -->
+  <!-- ===================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      const STORAGE_KEY = 'jee_2027_master_tracker_v1';
+
+      // -------------------------------------------------------------------
+      // 1. EXACT PRE-LOADED CHAPTERS FROM USER'S REGISTER (63 CHAPTERS)
+      // -------------------------------------------------------------------
+      const DEFAULT_CHAPTERS = [
+        // Physics (23 Chapters)
+        { id: 'phy_01', subject: 'Physics', name: 'Physics & Measurements', star: false },
+        { id: 'phy_02', subject: 'Physics', name: 'Kinematics', star: false },
+        { id: 'phy_03', subject: 'Physics', name: 'Laws of Motion', star: false },
+        { id: 'phy_04', subject: 'Physics', name: 'Work, Energy & Power', star: false },
+        { id: 'phy_05', subject: 'Physics', name: 'Rotational Motion', star: true },
+        { id: 'phy_06', subject: 'Physics', name: 'Gravitation', star: true },
+        { id: 'phy_07', subject: 'Physics', name: 'Properties of Solids & Liquids', star: false },
+        { id: 'phy_08', subject: 'Physics', name: 'Thermodynamics', star: true },
+        { id: 'phy_09', subject: 'Physics', name: 'KTG (Kinetic Theory of Gases)', star: true },
+        { id: 'phy_10', subject: 'Physics', name: 'Oscillations & Waves', star: false },
+        { id: 'phy_11', subject: 'Physics', name: 'Electrostatics', star: true },
+        { id: 'phy_12', subject: 'Physics', name: 'Current Electricity', star: true },
+        { id: 'phy_13', subject: 'Physics', name: 'Magnetic Effect of Current', star: true },
+        { id: 'phy_14', subject: 'Physics', name: 'Magnetism', star: false },
+        { id: 'phy_15', subject: 'Physics', name: 'Electromagnetic Induction', star: true },
+        { id: 'phy_16', subject: 'Physics', name: 'AC (Alternating Current)', star: true },
+        { id: 'phy_17', subject: 'Physics', name: 'Electromagnetic Waves', star: false },
+        { id: 'phy_18', subject: 'Physics', name: 'Optics', star: false },
+        { id: 'phy_19', subject: 'Physics', name: 'Dual Nature of Matter and Radiation', star: true },
+        { id: 'phy_20', subject: 'Physics', name: 'Atoms & Nuclei', star: true },
+        { id: 'phy_21', subject: 'Physics', name: 'Electronic Devices', star: false },
+        { id: 'phy_22', subject: 'Physics', name: 'Capacitors', star: false },
+        { id: 'phy_23', subject: 'Physics', name: 'Wave Optics', star: false },
+
+        // Maths (19 Chapters)
+        { id: 'math_01', subject: 'Maths', name: 'Sets, Relations & Functions', star: true },
+        { id: 'math_02', subject: 'Maths', name: 'Complex Numbers & Quadratic', star: true },
+        { id: 'math_03', subject: 'Maths', name: 'Matrices & Determinants', star: true },
+        { id: 'math_04', subject: 'Maths', name: 'Permutations & Combinations', star: false },
+        { id: 'math_05', subject: 'Maths', name: 'Binomial Theorem', star: true },
+        { id: 'math_06', subject: 'Maths', name: 'Sequence & Series', star: true },
+        { id: 'math_07', subject: 'Maths', name: 'Limit, Continuity & Diff.', star: true },
+        { id: 'math_08', subject: 'Maths', name: 'Integral Calculus (Indefinite)', star: true },
+        { id: 'math_09', subject: 'Maths', name: 'Definite Integrals', star: true },
+        { id: 'math_10', subject: 'Maths', name: 'Area Under Curve', star: true },
+        { id: 'math_11', subject: 'Maths', name: 'Differential Equations', star: true },
+        { id: 'math_12', subject: 'Maths', name: 'Coordinate Geometry (Straight Lines, Circle, Conic Sections)', star: false },
+        { id: 'math_13', subject: 'Maths', name: '3-D Geometry', star: true },
+        { id: 'math_14', subject: 'Maths', name: 'Vector Algebra', star: true },
+        { id: 'math_15', subject: 'Maths', name: 'Statistics', star: false },
+        { id: 'math_16', subject: 'Maths', name: 'Probability', star: false },
+        { id: 'math_17', subject: 'Maths', name: 'Trigonometry', star: false },
+        { id: 'math_18', subject: 'Maths', name: 'Inverse Trigonometry', star: false },
+        { id: 'math_19', subject: 'Maths', name: 'Application of Derivatives', star: true },
+
+        // Chemistry (21 Chapters)
+        { id: 'chem_01', subject: 'Chemistry', name: 'Basic Concepts', star: false },
+        { id: 'chem_02', subject: 'Chemistry', name: 'Atomic Structure', star: false },
+        { id: 'chem_03', subject: 'Chemistry', name: 'Chemical Bonding', star: false },
+        { id: 'chem_04', subject: 'Chemistry', name: 'Thermodynamics', star: false },
+        { id: 'chem_05', subject: 'Chemistry', name: 'Solutions', star: false },
+        { id: 'chem_06', subject: 'Chemistry', name: 'Equilibrium', star: false },
+        { id: 'chem_07', subject: 'Chemistry', name: 'Redox Reactions', star: false },
+        { id: 'chem_08', subject: 'Chemistry', name: 'Electrochemistry', star: false },
+        { id: 'chem_09', subject: 'Chemistry', name: 'Chemical Kinetics', star: false },
+        { id: 'chem_10', subject: 'Chemistry', name: 'Classification of Elements', star: false },
+        { id: 'chem_11', subject: 'Chemistry', name: 'P-block (13 to 18)', star: false },
+        { id: 'chem_12', subject: 'Chemistry', name: 'd- and f-Block', star: true },
+        { id: 'chem_13', subject: 'Chemistry', name: 'Coordination Compounds', star: true },
+        { id: 'chem_14', subject: 'Chemistry', name: 'Purification & Characterisation of Organic Compounds', star: false },
+        { id: 'chem_15', subject: 'Chemistry', name: 'Basic Principles of OC (GOC)', star: false },
+        { id: 'chem_16', subject: 'Chemistry', name: 'Hydrocarbons', star: false },
+        { id: 'chem_17', subject: 'Chemistry', name: 'Haloalkanes & Haloarenes', star: false },
+        { id: 'chem_18', subject: 'Chemistry', name: 'Alcohols, Phenols, Ethers', star: false },
+        { id: 'chem_19', subject: 'Chemistry', name: 'Aldehyde, Ketones, Carboxylic', star: true },
+        { id: 'chem_20', subject: 'Chemistry', name: 'Amines', star: true },
+        { id: 'chem_21', subject: 'Chemistry', name: 'Biomolecules', star: false },
+      ];
+
+      // -------------------------------------------------------------------
+      // 2. PRE-LOADED 38 JEE MAIN SHIFTS (2026 & 2025 PAPER 1)
+      // -------------------------------------------------------------------
+      const DEFAULT_SHIFTS = [
+        // 2026 Shifts (19)
+        { id: 's26_01', year: '2026', session: 'Jan S1', title: '21 Jan 2026 — Shift 1' },
+        { id: 's26_02', year: '2026', session: 'Jan S1', title: '21 Jan 2026 — Shift 2' },
+        { id: 's26_03', year: '2026', session: 'Jan S1', title: '22 Jan 2026 — Shift 1' },
+        { id: 's26_04', year: '2026', session: 'Jan S1', title: '22 Jan 2026 — Shift 2' },
+        { id: 's26_05', year: '2026', session: 'Jan S1', title: '23 Jan 2026 — Shift 1' },
+        { id: 's26_06', year: '2026', session: 'Jan S1', title: '23 Jan 2026 — Shift 2' },
+        { id: 's26_07', year: '2026', session: 'Jan S1', title: '24 Jan 2026 — Shift 1' },
+        { id: 's26_08', year: '2026', session: 'Jan S1', title: '24 Jan 2026 — Shift 2' },
+        { id: 's26_09', year: '2026', session: 'Jan S1', title: '28 Jan 2026 — Shift 1' },
+        { id: 's26_10', year: '2026', session: 'Jan S1', title: '28 Jan 2026 — Shift 2' },
+        { id: 's26_11', year: '2026', session: 'Apr S2', title: '02 Apr 2026 — Shift 1' },
+        { id: 's26_12', year: '2026', session: 'Apr S2', title: '02 Apr 2026 — Shift 2' },
+        { id: 's26_13', year: '2026', session: 'Apr S2', title: '04 Apr 2026 — Shift 1' },
+        { id: 's26_14', year: '2026', session: 'Apr S2', title: '04 Apr 2026 — Shift 2' },
+        { id: 's26_15', year: '2026', session: 'Apr S2', title: '05 Apr 2026 — Shift 1' },
+        { id: 's26_16', year: '2026', session: 'Apr S2', title: '05 Apr 2026 — Shift 2' },
+        { id: 's26_17', year: '2026', session: 'Apr S2', title: '06 Apr 2026 — Shift 1' },
+        { id: 's26_18', year: '2026', session: 'Apr S2', title: '06 Apr 2026 — Shift 2' },
+        { id: 's26_19', year: '2026', session: 'Apr S2', title: '08 Apr 2026 — Shift 2' },
+
+        // 2025 Shifts (19)
+        { id: 's25_01', year: '2025', session: 'Jan S1', title: '22 Jan 2025 — Shift 1' },
+        { id: 's25_02', year: '2025', session: 'Jan S1', title: '22 Jan 2025 — Shift 2' },
+        { id: 's25_03', year: '2025', session: 'Jan S1', title: '23 Jan 2025 — Shift 1' },
+        { id: 's25_04', year: '2025', session: 'Jan S1', title: '23 Jan 2025 — Shift 2' },
+        { id: 's25_05', year: '2025', session: 'Jan S1', title: '24 Jan 2025 — Shift 1' },
+        { id: 's25_06', year: '2025', session: 'Jan S1', title: '24 Jan 2025 — Shift 2' },
+        { id: 's25_07', year: '2025', session: 'Jan S1', title: '28 Jan 2025 — Shift 1' },
+        { id: 's25_08', year: '2025', session: 'Jan S1', title: '28 Jan 2025 — Shift 2' },
+        { id: 's25_09', year: '2025', session: 'Jan S1', title: '29 Jan 2025 — Shift 1' },
+        { id: 's25_10', year: '2025', session: 'Jan S1', title: '29 Jan 2025 — Shift 2' },
+        { id: 's25_11', year: '2025', session: 'Apr S2', title: '02 Apr 2025 — Shift 1' },
+        { id: 's25_12', year: '2025', session: 'Apr S2', title: '02 Apr 2025 — Shift 2' },
+        { id: 's25_13', year: '2025', session: 'Apr S2', title: '03 Apr 2025 — Shift 1' },
+        { id: 's25_14', year: '2025', session: 'Apr S2', title: '03 Apr 2025 — Shift 2' },
+        { id: 's25_15', year: '2025', session: 'Apr S2', title: '04 Apr 2025 — Shift 1' },
+        { id: 's25_16', year: '2025', session: 'Apr S2', title: '04 Apr 2025 — Shift 2' },
+        { id: 's25_17', year: '2025', session: 'Apr S2', title: '07 Apr 2025 — Shift 1' },
+        { id: 's25_18', year: '2025', session: 'Apr S2', title: '07 Apr 2025 — Shift 2' },
+        { id: 's25_19', year: '2025', session: 'Apr S2', title: '08 Apr 2025 — Shift 2' },
+      ];
+
+      // -------------------------------------------------------------------
+      // 3. STATE INITIALIZATION & STORAGE SERVICE
+      // -------------------------------------------------------------------
+      function getLocalDateStr(dateObj = new Date()) {
+        const y = dateObj.getFullYear();
+        const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const d = String(dateObj.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+      }
+
+      function createFreshState() {
+        return {
+          chapters: DEFAULT_CHAPTERS.map(ch => ({
+            ...ch,
+            theory: false,
+            questions: false,
+            pyq: false,
+            rev: 0,
+            note: '',
+            custom: false
+          })),
+          shifts: DEFAULT_SHIFTS.map(sh => ({
+            ...sh,
+            done: false,
+            phy: '',
+            chem: '',
+            math: '',
+            percentile: '',
+            mistakes: '',
+            custom: false
+          })),
+          dailyTargets: [
+            { id: 't_1', text: 'Rotational Motion PYQs', done: false },
+            { id: 't_2', text: '2026 Jan 21 Shift 1 Mock', done: false },
+            { id: 't_3', text: 'Revise Coordination Compounds', done: false }
+          ],
+          targetsOpen: true,
+          targetExamDate: '2027-01-21',
+          streakData: {
+            count: 1,
+            lastActiveDate: getLocalDateStr()
+          }
+        };
+      }
+
+      let appState = createFreshState();
+
+      // UI Filter State (non-persistent session view state)
+      const uiState = {
+        activeMainTab: 'syllabus', // 'syllabus' | 'mocks'
+        activeSubject: 'Physics',  // 'Physics' | 'Maths' | 'Chemistry' | 'All'
+        chapterFilter: 'all',      // 'all' | 'star' | 'pyq_pending' | 'theory_done_pyq_left' | 'completed'
+        chapterSearch: '',
+        mockFilter: 'all',         // 'all' | '2026' | '2025' | 'attempted' | 'unattempted'
+        mockSearch: '',
+        resetConfirmArmed: false
+      };
+
+      const StorageService = {
+        load() {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) {
+              this.save(false);
+              return;
+            }
+            const parsed = JSON.parse(raw);
+            if (parsed && Array.isArray(parsed.chapters) && Array.isArray(parsed.shifts)) {
+              appState = {
+                ...createFreshState(),
+                ...parsed,
+                streakData: parsed.streakData || { count: 1, lastActiveDate: getLocalDateStr() }
+              };
+            }
+          } catch (err) {
+            console.warn('Storage load fallback:', err);
+          }
+        },
+        save(showToast = true) {
+          try {
+            updateStreakOnActivity();
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            if (showToast) triggerSaveToast('Saved ✓');
+          } catch (err) {
+            console.warn('Storage save error:', err);
+          }
+        }
+      };
+
+      // Update daily streak seamlessly
+      function updateStreakOnActivity() {
+        const today = getLocalDateStr();
+        const sd = appState.streakData || { count: 1, lastActiveDate: today };
+        if (sd.lastActiveDate === today) {
+          if (!sd.count || sd.count < 1) sd.count = 1;
+        } else {
+          const yesterday = new Date();
+          yesterday.setDate(yesterday.getDate() - 1);
+          const yStr = getLocalDateStr(yesterday);
+          if (sd.lastActiveDate === yStr) {
+            sd.count = (sd.count || 1) + 1;
+          } else {
+            sd.count = 1;
+          }
+          sd.lastActiveDate = today;
+        }
+        appState.streakData = sd;
+        renderHeaderWidgets();
+      }
+
+      // Subtle Toast Feedback
+      let toastTimer = null;
+      function triggerSaveToast(message = 'Saved ✓') {
+        const toast = document.getElementById('saveToast');
+        const text = document.getElementById('saveToastText');
+        if (!toast || !text) return;
+        text.textContent = message;
+        toast.classList.remove('opacity-0', 'translate-y-2');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0');
+          toast.classList.add('opacity-0', 'translate-y-2');
+        }, 1300);
+      }
+
+      // Escape HTML helper
+      function escapeHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      // Check SVG helper
+      function getCheckSvg(active) {
+        return active
+          ? `<svg class="w-5 h-5 tick-icon-active" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>`
+          : `<span class="w-2 h-2 rounded-full bg-gray-700/70"></span>`;
+      }
+
+      // -------------------------------------------------------------------
+      // 4. HEADER WIDGETS (COUNTDOWN & STREAK)
+      // -------------------------------------------------------------------
+      function renderHeaderWidgets() {
+        // Countdown
+        const targetStr = appState.targetExamDate || '2027-01-21';
+        const targetDate = new Date(targetStr + 'T09:00:00');
+        const now = new Date();
+        const diffMs = targetDate.getTime() - now.getTime();
+        const daysLeft = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+        const cdEl = document.getElementById('countdownText');
+        if (cdEl) {
+          cdEl.textContent = daysLeft === 1 ? '1 Day Left' : `${daysLeft} Days Left`;
+        }
+        const dateInput = document.getElementById('targetDateInput');
+        if (dateInput && dateInput.value !== targetStr) {
+          dateInput.value = targetStr;
+        }
+
+        // Streak
+        const count = (appState.streakData && appState.streakData.count) || 1;
+        const streakEl = document.getElementById('streakCountText');
+        if (streakEl) {
+          streakEl.textContent = count === 1 ? '1 Day' : `${count} Days`;
+        }
+      }
+
+      // -------------------------------------------------------------------
+      // 5. DASHBOARD PROGRESS METRICS
+      // -------------------------------------------------------------------
+      function updateDashboardMetrics() {
+        const chapters = appState.chapters;
+        const totalCh = chapters.length || 1;
+
+        let totalTicks = 0;
+        let maxTicks = totalCh * 3;
+        let fullDoneCount = 0;
+        let pyqDoneCount = 0;
+
+        const subStats = {
+          Physics: { total: 0, ticks: 0, full: 0 },
+          Maths: { total: 0, ticks: 0, full: 0 },
+          Chemistry: { total: 0, ticks: 0, full: 0 },
+        };
+
+        chapters.forEach(ch => {
+          const t = ch.theory ? 1 : 0;
+          const q = ch.questions ? 1 : 0;
+          const p = ch.pyq ? 1 : 0;
+          const sum = t + q + p;
+
+          totalTicks += sum;
+          if (p === 1) pyqDoneCount++;
+          if (sum === 3) fullDoneCount++;
+
+          if (subStats[ch.subject]) {
+            subStats[ch.subject].total += 1;
+            subStats[ch.subject].ticks += sum;
+            if (sum === 3) subStats[ch.subject].full += 1;
+          }
+        });
+
+        const overallPct = Math.round((totalTicks / maxTicks) * 100);
+        document.getElementById('overallPctText').textContent = `${overallPct}%`;
+        document.getElementById('overallFullDoneText').innerHTML = `${fullDoneCount} <span class="text-xs font-normal text-gray-400">/ ${chapters.length} Full Done</span>`;
+        document.getElementById('overallBar').style.width = `${overallPct}%`;
+
+        // Subject cards
+        ['Physics', 'Maths', 'Chemistry'].forEach(sub => {
+          const st = subStats[sub];
+          const pct = st.total ? Math.round((st.ticks / (st.total * 3)) * 100) : 0;
+          const prefix = sub === 'Physics' ? 'phy' : sub === 'Maths' ? 'math' : 'chem';
+          document.getElementById(`${prefix}PctText`).textContent = `${pct}%`;
+          document.getElementById(`${prefix}CountText`).innerHTML = `${st.full} <span class="text-xs font-normal text-gray-400">/ ${st.total}</span>`;
+          document.getElementById(`${prefix}Bar`).style.width = `${pct}%`;
+
+          // Update sub-tab counts
+          const subCountEl = document.getElementById(`subCount${sub}`);
+          if (subCountEl) subCountEl.textContent = `(${st.total})`;
+        });
+
+        document.getElementById('subCountAll').textContent = `(${chapters.length})`;
+        document.getElementById('navSyllabusCount').textContent = `${chapters.length}`;
+
+        // PYQs card
+        const pyqPct = Math.round((pyqDoneCount / totalCh) * 100);
+        document.getElementById('pyqPctText').textContent = `${pyqPct}%`;
+        document.getElementById('pyqCountText').innerHTML = `${pyqDoneCount} <span class="text-xs font-normal text-gray-400">/ ${chapters.length} Ch.</span>`;
+        document.getElementById('pyqBar').style.width = `${pyqPct}%`;
+      }
+
+      // -------------------------------------------------------------------
+      // 6. TODAY'S PINNED TARGETS
+      // -------------------------------------------------------------------
+      function renderDailyTargets() {
+        const body = document.getElementById('targetsBody');
+        const badge = document.getElementById('targetsBadge');
+        const chevron = document.getElementById('targetsChevron');
+
+        const targets = appState.dailyTargets || [];
+        const doneCount = targets.filter(t => t.done).length;
+        badge.textContent = `${doneCount}/${targets.length}`;
+
+        if (appState.targetsOpen === false) {
+          body.classList.add('hidden');
+          chevron.style.transform = 'rotate(-90deg)';
+        } else {
+          body.classList.remove('hidden');
+          chevron.style.transform = 'rotate(0deg)';
+        }
+
+        if (targets.length === 0) {
+          body.innerHTML = `<span class="text-xs text-gray-500 py-1">No targets pinned for today. Add 2–3 key goals above!</span>`;
+          return;
+        }
+
+        body.innerHTML = targets.map(t => `
+          <div class="inline-flex items-center gap-1.5 pl-2 pr-1.5 py-1 rounded-xl border transition ${
+            t.done
+              ? 'bg-emerald-500/10 border-emerald-500/35 text-emerald-300'
+              : 'bg-obsidian border-borderSubtle text-gray-200'
+          }">
+            <button type="button" data-toggle-target="${escapeHtml(t.id)}"
+              class="min-h-[34px] px-1.5 flex items-center gap-2 text-xs font-medium cursor-pointer text-left">
+              <span class="w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ${
+                t.done ? 'bg-emerald-400 border-emerald-400 text-obsidian font-bold' : 'border-gray-600'
+              }">${t.done ? '✓' : ''}</span>
+              <span class="${t.done ? 'line-through opacity-75' : ''}">${escapeHtml(t.text)}</span>
+            </button>
+            <button type="button" data-delete-target="${escapeHtml(t.id)}" title="Remove target"
+              class="w-7 h-7 rounded-lg text-gray-500 hover:text-rose-400 hover:bg-rose-500/10 flex items-center justify-center text-xs cursor-pointer">
+              ✕
+            </button>
+          </div>
+        `).join('');
+      }
+
+      // -------------------------------------------------------------------
+      // 7. TAB 1: SYLLABUS REGISTER RENDERING & INTERACTIONS
+      // -------------------------------------------------------------------
+      function renderSubTabsAndFilters() {
+        // Subject sub-tabs
+        document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+          const sub = btn.getAttribute('data-sub');
+          const active = uiState.activeSubject === sub;
+          btn.className = 'sub-tab-btn min-h-[42px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition cursor-pointer whitespace-nowrap ';
+          if (active) {
+            if (sub === 'Physics') btn.className += 'bg-sky-500/15 text-phy border-sky-400/50 shadow-sm';
+            else if (sub === 'Maths') btn.className += 'bg-violet-500/15 text-math border-violet-400/50 shadow-sm';
+            else if (sub === 'Chemistry') btn.className += 'bg-emerald-500/15 text-chem border-emerald-400/50 shadow-sm';
+            else btn.className += 'bg-gray-200/10 text-white border-gray-400/50 shadow-sm';
+          } else {
+            btn.className += 'bg-surface text-gray-400 border-borderSubtle hover:text-gray-200 hover:bg-surfaceHover';
+          }
+        });
+
+        // Filter pills
+        document.querySelectorAll('.cfilter-btn').forEach(btn => {
+          const f = btn.getAttribute('data-cfilter');
+          const active = uiState.chapterFilter === f;
+          btn.className = 'cfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap ' +
+            (active
+              ? 'bg-sky-500/15 text-sky-300 border-sky-400/45'
+              : 'bg-surface text-gray-400 border-borderSubtle hover:text-gray-200');
+        });
+      }
+
+      function getFilteredChapters() {
+        const q = uiState.chapterSearch.trim().toLowerCase();
+        return appState.chapters.filter(ch => {
+          if (uiState.activeSubject !== 'All' && ch.subject !== uiState.activeSubject) return false;
+
+          if (uiState.chapterFilter === 'star' && !ch.star) return false;
+          if (uiState.chapterFilter === 'pyq_pending' && ch.pyq) return false;
+          if (uiState.chapterFilter === 'theory_done_pyq_left' && !(ch.theory && !ch.pyq)) return false;
+          if (uiState.chapterFilter === 'completed' && !(ch.theory && ch.questions && ch.pyq)) return false;
+
+          if (q) {
+            const hay = `${ch.name} ${ch.note} ${ch.subject}`.toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        });
+      }
+
+      function getSubjectBadgeHtml(subject) {
+        if (subject === 'Physics') return `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-sky-500/15 text-phy border border-sky-400/25">PHY</span>`;
+        if (subject === 'Maths') return `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-violet-500/15 text-math border border-violet-400/25">MATH</span>`;
+        return `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-chem border border-emerald-400/25">CHEM</span>`;
+      }
+
+      function getRevPillClass(rev) {
+        if (rev >= 3) return 'rev-pill rev-3';
+        if (rev === 2) return 'rev-pill rev-2';
+        if (rev === 1) return 'rev-pill rev-1';
+        return 'rev-pill';
+      }
+
+      function getRevLabel(rev) {
+        if (rev >= 3) return `${rev}x ✓✓`;
+        if (rev === 2) return `2x ✓`;
+        if (rev === 1) return `1x`;
+        return `0x`;
+      }
+
+      function renderChaptersList() {
+        renderSubTabsAndFilters();
+        const container = document.getElementById('chaptersListContainer');
+        const list = getFilteredChapters();
+
+        if (list.length === 0) {
+          container.innerHTML = `
+            <div class="p-8 text-center bg-surface rounded-2xl border border-borderSubtle">
+              <div class="text-gray-400 text-sm font-semibold">No chapters match the current filter.</div>
+              <button type="button" id="resetChapterFiltersInline" class="mt-3 min-h-[40px] px-4 py-2 rounded-xl bg-sky-500/15 border border-sky-400/40 text-sky-300 text-xs font-bold cursor-pointer">
+                Reset Filters
+              </button>
+            </div>
+          `;
+          return;
+        }
+
+        // Compute per-subject serial numbers so S.No matches the register (1..23, 1..19, 1..21)
+        const subjectSerialMap = {};
+        const counters = { Physics: 0, Maths: 0, Chemistry: 0 };
+        appState.chapters.forEach(ch => {
+          counters[ch.subject] = (counters[ch.subject] || 0) + 1;
+          subjectSerialMap[ch.id] = String(counters[ch.subject]).padStart(2, '0');
+        });
+
+        container.innerHTML = list.map(ch => {
+          const isComplete = ch.theory && ch.questions && ch.pyq;
+          const sno = subjectSerialMap[ch.id] || '01';
+          const showSubTag = uiState.activeSubject === 'All';
+
+          return `
+            <div data-ch-row="${escapeHtml(ch.id)}"
+              class="chapter-row bg-surface md:bg-transparent border border-borderSubtle md:border-0 rounded-2xl md:rounded-none p-3 md:px-4 md:py-2.5 transition-colors hover:bg-surfaceHover/60 ${
+                isComplete ? 'chapter-completed' : ''
+              }">
+              <div class="flex flex-col md:grid md:grid-cols-12 md:items-center gap-2.5 md:gap-2">
+
+                <!-- Top / Left: S.No, Star, Chapter Name -->
+                <div class="md:col-span-5 flex items-center gap-1.5 min-w-0">
+                  <span class="font-mono text-xs font-bold text-gray-500 w-6 shrink-0">${sno}.</span>
+
+                  <button type="button" data-action="toggle-star" data-id="${escapeHtml(ch.id)}" title="Toggle High Priority Star"
+                    class="star-btn shrink-0 ${ch.star ? 'text-star' : 'text-gray-600 hover:text-gray-400'}">
+                    <span class="text-lg leading-none">${ch.star ? '★' : '☆'}</span>
+                  </button>
+
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-1.5 flex-wrap">
+                      ${showSubTag ? getSubjectBadgeHtml(ch.subject) : ''}
+                      <span class="text-sm font-semibold leading-snug ${isComplete ? 'text-emerald-200' : 'text-gray-100'}">
+                        ${escapeHtml(ch.name)}
+                      </span>
+                      ${isComplete ? '<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">DONE</span>' : ''}
+                    </div>
+                  </div>
+
+                  ${ch.custom ? `
+                    <button type="button" data-action="delete-chapter" data-id="${escapeHtml(ch.id)}" title="Delete custom chapter"
+                      class="w-8 h-8 rounded-lg text-gray-500 hover:text-rose-400 hover:bg-rose-500/10 flex items-center justify-center text-xs shrink-0 cursor-pointer">
+                      ✕
+                    </button>
+                  ` : ''}
+                </div>
+
+                <!-- Bottom / Right: Theory, Questions, PYQ Ticks + Rev Counter + Score/Note Input -->
+                <div class="md:col-span-7 flex flex-wrap md:grid md:grid-cols-7 items-center gap-2 pt-1 md:pt-0 border-t border-gray-800/80 md:border-t-0">
+
+                  <!-- Theory Tick -->
+                  <div class="md:col-span-1 flex items-center md:justify-center gap-1.5">
+                    <button type="button" data-action="toggle-field" data-field="theory" data-id="${escapeHtml(ch.id)}"
+                      class="tick-btn ${ch.theory ? 'checked-theory' : ''}" aria-label="Theory completed">
+                      ${getCheckSvg(ch.theory)}
+                    </button>
+                    <span class="md:hidden text-[11px] font-semibold ${ch.theory ? 'text-sky-300' : 'text-gray-400'}">Theory</span>
+                  </div>
+
+                  <!-- Questions Tick -->
+                  <div class="md:col-span-1 flex items-center md:justify-center gap-1.5">
+                    <button type="button" data-action="toggle-field" data-field="questions" data-id="${escapeHtml(ch.id)}"
+                      class="tick-btn ${ch.questions ? 'checked-questions' : ''}" aria-label="Questions completed">
+                      ${getCheckSvg(ch.questions)}
+                    </button>
+                    <span class="md:hidden text-[11px] font-semibold ${ch.questions ? 'text-violet-300' : 'text-gray-400'}">Ques</span>
+                  </div>
+
+                  <!-- PYQ Tick -->
+                  <div class="md:col-span-1 flex items-center md:justify-center gap-1.5">
+                    <button type="button" data-action="toggle-field" data-field="pyq" data-id="${escapeHtml(ch.id)}"
+                      class="tick-btn ${ch.pyq ? 'checked-pyq' : ''}" aria-label="PYQ completed">
+                      ${getCheckSvg(ch.pyq)}
+                    </button>
+                    <span class="md:hidden text-[11px] font-semibold ${ch.pyq ? 'text-emerald-300' : 'text-gray-400'}">PYQ</span>
+                  </div>
+
+                  <!-- Revision Counter Pill -->
+                  <div class="md:col-span-1 flex items-center md:justify-center">
+                    <button type="button" data-action="cycle-rev" data-id="${escapeHtml(ch.id)}" title="Tap to increment revision count (0x → 1x → 2x → 3x+)"
+                      class="${getRevPillClass(ch.rev)}">
+                      <span>${getRevLabel(ch.rev)}</span>
+                    </button>
+                  </div>
+
+                  <!-- PYQ Score / Note Inline Input -->
+                  <div class="w-full sm:w-auto flex-1 md:col-span-3">
+                    <input type="text" data-action="edit-note" data-id="${escapeHtml(ch.id)}"
+                      value="${escapeHtml(ch.note)}"
+                      placeholder="PYQ marks (e.g. 24/30) or note..."
+                      class="w-full h-10 px-3 rounded-xl bg-obsidian border border-borderSubtle text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-sky-400/60 transition" />
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // -------------------------------------------------------------------
+      // 8. TAB 2: MOCK TEST & SHIFT MARKS TRACKER (/300)
+      // -------------------------------------------------------------------
+      function computeShiftTotal(sh) {
+        const hasAny = sh.phy !== '' || sh.chem !== '' || sh.math !== '';
+        if (!hasAny) return null;
+        const p = Number(sh.phy) || 0;
+        const c = Number(sh.chem) || 0;
+        const m = Number(sh.math) || 0;
+        return p + c + m;
+      }
+
+      function getScoreBadgeClasses(total) {
+        if (total === null) {
+          return 'bg-obsidian border-borderSubtle text-gray-500';
+        }
+        if (total >= 180) {
+          return 'bg-emerald-500/15 border-emerald-400/50 text-emerald-300';
+        }
+        if (total >= 120) {
+          return 'bg-amber-500/15 border-amber-400/50 text-amber-300';
+        }
+        return 'bg-rose-500/15 border-rose-400/50 text-rose-300';
+      }
+
+      function updateMockAnalytics() {
+        const shifts = appState.shifts;
+        const attemptedCount = shifts.filter(s => s.done || computeShiftTotal(s) !== null).length;
+
+        document.getElementById('navMocksCount').textContent = `${attemptedCount}/${shifts.length}`;
+        document.getElementById('mockAttemptedStat').innerHTML = `${attemptedCount} <span class="text-xs font-normal text-gray-400">/ ${shifts.length}</span>`;
+
+        const scoredShifts = shifts
+          .map(s => ({ ...s, total: computeShiftTotal(s) }))
+          .filter(s => s.total !== null);
+
+        if (scoredShifts.length === 0) {
+          document.getElementById('mockAvgStat').innerHTML = `-- <span class="text-xs font-normal text-gray-400">/ 300</span>`;
+          document.getElementById('mockHighStat').innerHTML = `-- <span class="text-xs font-normal text-gray-400">/ 300</span>`;
+          document.getElementById('mockSubAvgStat').textContent = `-- / -- / --`;
+          return;
+        }
+
+        const totals = scoredShifts.map(s => s.total);
+        const avgTotal = Math.round(totals.reduce((a, b) => a + b, 0) / totals.length);
+        const maxTotal = Math.max(...totals);
+
+        const avgP = Math.round(scoredShifts.reduce((a, s) => a + (Number(s.phy) || 0), 0) / scoredShifts.length);
+        const avgC = Math.round(scoredShifts.reduce((a, s) => a + (Number(s.chem) || 0), 0) / scoredShifts.length);
+        const avgM = Math.round(scoredShifts.reduce((a, s) => a + (Number(s.math) || 0), 0) / scoredShifts.length);
+
+        document.getElementById('mockAvgStat').innerHTML = `${avgTotal} <span class="text-xs font-normal text-gray-400">/ 300</span>`;
+        document.getElementById('mockHighStat').innerHTML = `${maxTotal} <span class="text-xs font-normal text-gray-400">/ 300</span>`;
+        document.getElementById('mockSubAvgStat').innerHTML = `<span class="text-phy">${avgP}</span> / <span class="text-chem">${avgC}</span> / <span class="text-math">${avgM}</span>`;
+      }
+
+      function renderMockFilters() {
+        document.querySelectorAll('.mfilter-btn').forEach(btn => {
+          const f = btn.getAttribute('data-mfilter');
+          const active = uiState.mockFilter === f;
+          btn.className = 'mfilter-btn min-h-[38px] px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer whitespace-nowrap ' +
+            (active
+              ? 'bg-emerald-500/15 text-emerald-300 border-emerald-400/45'
+              : 'bg-surface text-gray-400 border-borderSubtle hover:text-gray-200');
+        });
+      }
+
+      function getFilteredShifts() {
+        const q = uiState.mockSearch.trim().toLowerCase();
+        return appState.shifts.filter(sh => {
+          const isAttempted = sh.done || computeShiftTotal(sh) !== null;
+          if (uiState.mockFilter === '2026' && sh.year !== '2026') return false;
+          if (uiState.mockFilter === '2025' && sh.year !== '2025') return false;
+          if (uiState.mockFilter === 'attempted' && !isAttempted) return false;
+          if (uiState.mockFilter === 'unattempted' && isAttempted) return false;
+
+          if (q) {
+            const hay = `${sh.title} ${sh.year} ${sh.session} ${sh.mistakes}`.toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        });
+      }
+
+      function renderShiftsList() {
+        renderMockFilters();
+        updateMockAnalytics();
+        const container = document.getElementById('shiftsListContainer');
+        const list = getFilteredShifts();
+
+        if (list.length === 0) {
+          container.innerHTML = `
+            <div class="p-8 text-center bg-surface rounded-2xl border border-borderSubtle">
+              <div class="text-gray-400 text-sm font-semibold">No shifts match this filter.</div>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = list.map((sh, idx) => {
+          const total = computeShiftTotal(sh);
+          const totalText = total !== null ? `${total}` : '--';
+          const badgeCls = getScoreBadgeClasses(total);
+
+          return `
+            <div data-shift-row="${escapeHtml(sh.id)}"
+              class="bg-surface lg:bg-transparent border border-borderSubtle lg:border-0 rounded-2xl lg:rounded-none p-3.5 lg:px-4 lg:py-2.5 transition-colors hover:bg-surfaceHover/60 ${
+                sh.done ? 'border-emerald-500/35' : ''
+              }">
+              <div class="flex flex-col lg:grid lg:grid-cols-12 lg:items-center gap-2.5 lg:gap-2">
+
+                <!-- Top / Left: Done Tick + Shift Title + Mobile Total Pill -->
+                <div class="lg:col-span-4 flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-2.5 min-w-0">
+                    <button type="button" data-mock-action="toggle-done" data-id="${escapeHtml(sh.id)}"
+                      class="tick-btn shrink-0 ${sh.done ? 'checked-mock' : ''}" aria-label="Mark shift attempted">
+                      ${getCheckSvg(sh.done)}
+                    </button>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
+                          sh.year === '2026'
+                            ? 'bg-sky-500/15 text-sky-300 border border-sky-400/25'
+                            : sh.year === '2025'
+                            ? 'bg-violet-500/15 text-violet-300 border border-violet-400/25'
+                            : 'bg-amber-500/15 text-amber-300 border border-amber-400/25'
+                        }">${escapeHtml(sh.year)} ${sh.session ? '· ' + escapeHtml(sh.session) : ''}</span>
+                        ${sh.custom ? `<button type="button" data-mock-action="delete-mock" data-id="${escapeHtml(sh.id)}" class="text-xs text-gray-500 hover:text-rose-400 px-1 cursor-pointer">✕</button>` : ''}
+                      </div>
+                      <div class="text-sm font-bold text-gray-100 mt-0.5 truncate">${escapeHtml(sh.title)}</div>
+                    </div>
+                  </div>
+
+                  <!-- Mobile / Tablet Total Score Badge -->
+                  <div data-total-badge-mobile="${escapeHtml(sh.id)}"
+                    class="lg:hidden px-3 py-1.5 rounded-xl border font-mono text-xs font-extrabold shrink-0 ${badgeCls}">
+                    ${totalText} <span class="font-normal opacity-75">/300</span>
+                  </div>
+                </div>
+
+                <!-- Inputs: Phy, Chem, Math, Desktop Total, Percentile -->
+                <div class="lg:col-span-5 grid grid-cols-4 lg:grid-cols-5 items-center gap-2">
+                  <div>
+                    <label class="block lg:hidden text-[10px] font-bold text-phy mb-0.5">Phy (/100)</label>
+                    <input type="number" min="-25" max="100" step="1" data-mock-action="edit-score" data-field="phy" data-id="${escapeHtml(sh.id)}"
+                      value="${escapeHtml(sh.phy)}" placeholder="Phy"
+                      class="w-full h-10 px-2 rounded-xl bg-obsidian border border-borderSubtle text-center font-mono text-xs sm:text-sm text-sky-200 placeholder-gray-600 focus:outline-none focus:border-phy" />
+                  </div>
+                  <div>
+                    <label class="block lg:hidden text-[10px] font-bold text-chem mb-0.5">Chem (/100)</label>
+                    <input type="number" min="-25" max="100" step="1" data-mock-action="edit-score" data-field="chem" data-id="${escapeHtml(sh.id)}"
+                      value="${escapeHtml(sh.chem)}" placeholder="Chem"
+                      class="w-full h-10 px-2 rounded-xl bg-obsidian border border-borderSubtle text-center font-mono text-xs sm:text-sm text-emerald-200 placeholder-gray-600 focus:outline-none focus:border-chem" />
+                  </div>
+                  <div>
+                    <label class="block lg:hidden text-[10px] font-bold text-math mb-0.5">Math (/100)</label>
+                    <input type="number" min="-25" max="100" step="1" data-mock-action="edit-score" data-field="math" data-id="${escapeHtml(sh.id)}"
+                      value="${escapeHtml(sh.math)}" placeholder="Math"
+                      class="w-full h-10 px-2 rounded-xl bg-obsidian border border-borderSubtle text-center font-mono text-xs sm:text-sm text-violet-200 placeholder-gray-600 focus:outline-none focus:border-math" />
+                  </div>
+
+                  <!-- Desktop Total Badge -->
+                  <div class="hidden lg:flex justify-center">
+                    <div data-total-badge-desktop="${escapeHtml(sh.id)}"
+                      class="w-full h-10 rounded-xl border font-mono text-sm font-extrabold flex items-center justify-center ${badgeCls}">
+                      ${totalText}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block lg:hidden text-[10px] font-bold text-amber-300 mb-0.5">%ile / %</label>
+                    <input type="text" maxlength="10" data-mock-action="edit-text" data-field="percentile" data-id="${escapeHtml(sh.id)}"
+                      value="${escapeHtml(sh.percentile)}" placeholder="%ile"
+                      class="w-full h-10 px-2 rounded-xl bg-obsidian border border-borderSubtle text-center font-mono text-xs text-amber-200 placeholder-gray-600 focus:outline-none focus:border-amber-400" />
+                  </div>
+                </div>
+
+                <!-- Key Mistakes Input -->
+                <div class="lg:col-span-3">
+                  <input type="text" data-mock-action="edit-text" data-field="mistakes" data-id="${escapeHtml(sh.id)}"
+                    value="${escapeHtml(sh.mistakes)}" placeholder="Key mistakes / weak topics..."
+                    class="w-full h-10 px-3 rounded-xl bg-obsidian border border-borderSubtle text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-emerald-400/60" />
+                </div>
+
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // -------------------------------------------------------------------
+      // 9. MAIN TAB SWITCHING
+      // -------------------------------------------------------------------
+      function switchMainTab(tab) {
+        uiState.activeMainTab = tab;
+        const btnSyl = document.getElementById('tabBtnSyllabus');
+        const btnMock = document.getElementById('tabBtnMocks');
+        const viewSyl = document.getElementById('viewSyllabus');
+        const viewMock = document.getElementById('viewMocks');
+
+        if (tab === 'syllabus') {
+          btnSyl.className = 'min-h-[44px] px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer bg-sky-500/15 text-sky-300 border border-sky-400/40 shadow-sm';
+          btnMock.className = 'min-h-[44px] px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer text-gray-400 hover:text-gray-200 border border-transparent';
+          viewSyl.classList.remove('hidden');
+          viewMock.classList.add('hidden');
+          renderChaptersList();
+        } else {
+          btnMock.className = 'min-h-[44px] px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer bg-emerald-500/15 text-emerald-300 border border-emerald-400/40 shadow-sm';
+          btnSyl.className = 'min-h-[44px] px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer text-gray-400 hover:text-gray-200 border border-transparent';
+          viewMock.classList.remove('hidden');
+          viewSyl.classList.add('hidden');
+          renderShiftsList();
+        }
+      }
+
+      // -------------------------------------------------------------------
+      // 10. EVENT LISTENERS & DELEGATION
+      // -------------------------------------------------------------------
+      function bindEvents() {
+        // Main Tabs
+        document.getElementById('tabBtnSyllabus').addEventListener('click', () => switchMainTab('syllabus'));
+        document.getElementById('tabBtnMocks').addEventListener('click', () => switchMainTab('mocks'));
+
+        // Subject Sub-Tabs
+        document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            uiState.activeSubject = btn.getAttribute('data-sub');
+            renderChaptersList();
+          });
+        });
+
+        // Chapter Filter Chips
+        document.querySelectorAll('.cfilter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            uiState.chapterFilter = btn.getAttribute('data-cfilter');
+            renderChaptersList();
+          });
+        });
+
+        // Chapter Search Input
+        const chSearch = document.getElementById('chapterSearchInput');
+        const clearChSearch = document.getElementById('clearChapterSearchBtn');
+        chSearch.addEventListener('input', () => {
+          uiState.chapterSearch = chSearch.value;
+          clearChSearch.classList.toggle('hidden', !chSearch.value);
+          renderChaptersList();
+        });
+        clearChSearch.addEventListener('click', () => {
+          chSearch.value = '';
+          uiState.chapterSearch = '';
+          clearChSearch.classList.add('hidden');
+          renderChaptersList();
+        });
+
+        // Chapters List Event Delegation (Clicks)
+        document.getElementById('chaptersListContainer').addEventListener('click', (e) => {
+          if (e.target.id === 'resetChapterFiltersInline') {
+            uiState.chapterFilter = 'all';
+            uiState.chapterSearch = '';
+            chSearch.value = '';
+            clearChSearch.classList.add('hidden');
+            renderChaptersList();
+            return;
+          }
+
+          const actionBtn = e.target.closest('[data-action]');
+          if (!actionBtn) return;
+
+          const action = actionBtn.getAttribute('data-action');
+          const id = actionBtn.getAttribute('data-id');
+          const ch = appState.chapters.find(c => c.id === id);
+          if (!ch) return;
+
+          if (action === 'toggle-star') {
+            ch.star = !ch.star;
+            StorageService.save(true);
+            renderChaptersList();
+          } else if (action === 'toggle-field') {
+            const field = actionBtn.getAttribute('data-field');
+            ch[field] = !ch[field];
+            StorageService.save(true);
+            updateDashboardMetrics();
+            renderChaptersList();
+          } else if (action === 'cycle-rev') {
+            ch.rev = ((ch.rev || 0) + 1) % 6; // Cycles 0x -> 1x -> 2x -> 3x -> 4x -> 5x -> 0x
+            StorageService.save(true);
+            renderChaptersList();
+          } else if (action === 'delete-chapter') {
+            appState.chapters = appState.chapters.filter(c => c.id !== id);
+            StorageService.save(true);
+            updateDashboardMetrics();
+            renderChaptersList();
+          }
+        });
+
+        // Chapters List Inline Note Input (No full re-render so focus stays intact!)
+        document.getElementById('chaptersListContainer').addEventListener('input', (e) => {
+          const inp = e.target.closest('[data-action="edit-note"]');
+          if (!inp) return;
+          const id = inp.getAttribute('data-id');
+          const ch = appState.chapters.find(c => c.id === id);
+          if (!ch) return;
+          ch.note = inp.value;
+          StorageService.save(true);
+        });
+
+        // Today's Pinned Targets Collapse Toggle
+        document.getElementById('toggleTargetsBtn').addEventListener('click', () => {
+          appState.targetsOpen = appState.targetsOpen === false ? true : false;
+          StorageService.save(false);
+          renderDailyTargets();
+        });
+
+        // Add Daily Target
+        document.getElementById('addTargetForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const inp = document.getElementById('newTargetInput');
+          const val = inp.value.trim();
+          if (!val) return;
+          appState.dailyTargets.push({
+            id: 't_' + Date.now(),
+            text: val,
+            done: false
+          });
+          appState.targetsOpen = true;
+          inp.value = '';
+          StorageService.save(true);
+          renderDailyTargets();
+        });
+
+        // Toggle / Delete Daily Target
+        document.getElementById('targetsBody').addEventListener('click', (e) => {
+          const toggleBtn = e.target.closest('[data-toggle-target]');
+          if (toggleBtn) {
+            const tid = toggleBtn.getAttribute('data-toggle-target');
+            const item = appState.dailyTargets.find(t => t.id === tid);
+            if (item) {
+              item.done = !item.done;
+              StorageService.save(true);
+              renderDailyTargets();
+            }
+            return;
+          }
+          const delBtn = e.target.closest('[data-delete-target]');
+          if (delBtn) {
+            const tid = delBtn.getAttribute('data-delete-target');
+            appState.dailyTargets = appState.dailyTargets.filter(t => t.id !== tid);
+            StorageService.save(true);
+            renderDailyTargets();
+          }
+        });
+
+        // Mock Filter Chips & Search
+        document.querySelectorAll('.mfilter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            uiState.mockFilter = btn.getAttribute('data-mfilter');
+            renderShiftsList();
+          });
+        });
+
+        document.getElementById('mockSearchInput').addEventListener('input', (e) => {
+          uiState.mockSearch = e.target.value;
+          renderShiftsList();
+        });
+
+        // Shifts List Click Delegation
+        document.getElementById('shiftsListContainer').addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-mock-action]');
+          if (!btn) return;
+          const action = btn.getAttribute('data-mock-action');
+          const id = btn.getAttribute('data-id');
+          const sh = appState.shifts.find(s => s.id === id);
+          if (!sh) return;
+
+          if (action === 'toggle-done') {
+            sh.done = !sh.done;
+            StorageService.save(true);
+            renderShiftsList();
+          } else if (action === 'delete-mock') {
+            appState.shifts = appState.shifts.filter(s => s.id !== id);
+            StorageService.save(true);
+            renderShiftsList();
+          }
+        });
+
+        // Shifts List Input Delegation (In-place Total Badge update without losing focus!)
+        document.getElementById('shiftsListContainer').addEventListener('input', (e) => {
+          const inp = e.target.closest('[data-mock-action]');
+          if (!inp) return;
+          const action = inp.getAttribute('data-mock-action');
+          const field = inp.getAttribute('data-field');
+          const id = inp.getAttribute('data-id');
+          const sh = appState.shifts.find(s => s.id === id);
+          if (!sh) return;
+
+          if (action === 'edit-score') {
+            sh[field] = inp.value;
+            // Auto-check 'done' if user enters any score
+            if (inp.value !== '' && !sh.done) {
+              sh.done = true;
+              const row = document.querySelector(`[data-shift-row="${id}"]`);
+              const doneBtn = row && row.querySelector('[data-mock-action="toggle-done"]');
+              if (doneBtn) {
+                doneBtn.classList.add('checked-mock');
+                doneBtn.innerHTML = getCheckSvg(true);
+              }
+            }
+            const total = computeShiftTotal(sh);
+            const badgeCls = getScoreBadgeClasses(total);
+            const mobBadge = document.querySelector(`[data-total-badge-mobile="${id}"]`);
+            const deskBadge = document.querySelector(`[data-total-badge-desktop="${id}"]`);
+
+            if (mobBadge) {
+              mobBadge.className = `lg:hidden px-3 py-1.5 rounded-xl border font-mono text-xs font-extrabold shrink-0 ${badgeCls}`;
+              mobBadge.innerHTML = `${total !== null ? total : '--'} <span class="font-normal opacity-75">/300</span>`;
+            }
+            if (deskBadge) {
+              deskBadge.className = `w-full h-10 rounded-xl border font-mono text-sm font-extrabold flex items-center justify-center ${badgeCls}`;
+              deskBadge.textContent = total !== null ? `${total}` : '--';
+            }
+            updateMockAnalytics();
+            StorageService.save(true);
+          } else if (action === 'edit-text') {
+            sh[field] = inp.value;
+            StorageService.save(true);
+          }
+        });
+
+        // Modals Open/Close
+        document.getElementById('openBackupModalBtn').addEventListener('click', () => {
+          uiState.resetConfirmArmed = false;
+          const resetBtn = document.getElementById('resetProgressBtn');
+          resetBtn.textContent = 'Reset All Data';
+          document.getElementById('backupModal').classList.remove('hidden');
+        });
+        document.getElementById('countdownBtn').addEventListener('click', () => {
+          document.getElementById('backupModal').classList.remove('hidden');
+        });
+        document.getElementById('openAddChapterBtn').addEventListener('click', () => {
+          document.getElementById('customChapterSubject').value = uiState.activeSubject === 'All' ? 'Physics' : uiState.activeSubject;
+          document.getElementById('addChapterModal').classList.remove('hidden');
+          setTimeout(() => document.getElementById('customChapterName').focus(), 50);
+        });
+        document.getElementById('openAddMockBtn').addEventListener('click', () => {
+          document.getElementById('addMockModal').classList.remove('hidden');
+          setTimeout(() => document.getElementById('customMockTitle').focus(), 50);
+        });
+
+        document.querySelectorAll('[data-close-modal]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const modalId = btn.getAttribute('data-close-modal');
+            document.getElementById(modalId).classList.add('hidden');
+          });
+        });
+
+        // Close modal on backdrop click
+        ['backupModal', 'addChapterModal', 'addMockModal'].forEach(mid => {
+          const modalEl = document.getElementById(mid);
+          modalEl.addEventListener('click', (e) => {
+            if (e.target === modalEl) modalEl.classList.add('hidden');
+          });
+        });
+
+        // Add Custom Chapter Submit
+        document.getElementById('addChapterForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const subject = document.getElementById('customChapterSubject').value;
+          const name = document.getElementById('customChapterName').value.trim();
+          const star = document.getElementById('customChapterStar').checked;
+          if (!name) return;
+
+          appState.chapters.push({
+            id: 'custom_ch_' + Date.now(),
+            subject,
+            name,
+            star,
+            theory: false,
+            questions: false,
+            pyq: false,
+            rev: 0,
+            note: '',
+            custom: true
+          });
+          document.getElementById('customChapterName').value = '';
+          document.getElementById('customChapterStar').checked = false;
+          document.getElementById('addChapterModal').classList.add('hidden');
+          StorageService.save(true);
+          updateDashboardMetrics();
+          renderChaptersList();
+        });
+
+        // Add Custom Mock Submit
+        document.getElementById('addMockForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const title = document.getElementById('customMockTitle').value.trim();
+          const year = document.getElementById('customMockYear').value;
+          if (!title) return;
+
+          appState.shifts.unshift({
+            id: 'custom_sh_' + Date.now(),
+            year,
+            session: '',
+            title,
+            done: false,
+            phy: '',
+            chem: '',
+            math: '',
+            percentile: '',
+            mistakes: '',
+            custom: true
+          });
+          document.getElementById('customMockTitle').value = '';
+          document.getElementById('addMockModal').classList.add('hidden');
+          StorageService.save(true);
+          renderShiftsList();
+        });
+
+        // Target Exam Date Change
+        document.getElementById('targetDateInput').addEventListener('change', (e) => {
+          if (e.target.value) {
+            appState.targetExamDate = e.target.value;
+            StorageService.save(true);
+            renderHeaderWidgets();
+          }
+        });
+
+        // Backup: Export JSON Download
+        document.getElementById('exportJsonBtn').addEventListener('click', () => {
+          try {
+            const dataStr = JSON.stringify(appState, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `JEE_2027_Tracker_Backup_${getLocalDateStr()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            triggerSaveToast('Backup Downloaded ✓');
+          } catch (err) {
+            triggerSaveToast('Export Ready');
+          }
+        });
+
+        // Backup: Copy JSON to Clipboard using execCommand fallback
+        document.getElementById('copyJsonBtn').addEventListener('click', () => {
+          const area = document.getElementById('backupClipboardArea');
+          area.value = JSON.stringify(appState);
+          area.classList.remove('sr-only');
+          area.select();
+          try {
+            document.execCommand('copy');
+            triggerSaveToast('Copied to Clipboard ✓');
+          } catch (err) {
+            triggerSaveToast('Copy failed');
+          }
+          area.classList.add('sr-only');
+        });
+
+        // Restore JSON Helper
+        function restoreFromJsonString(jsonText) {
+          try {
+            const parsed = JSON.parse(jsonText);
+            if (!parsed || !Array.isArray(parsed.chapters) || !Array.isArray(parsed.shifts)) {
+              triggerSaveToast('Invalid Backup File');
+              return;
+            }
+            appState = {
+              ...createFreshState(),
+              ...parsed
+            };
+            StorageService.save(false);
+            renderAll();
+            document.getElementById('backupModal').classList.add('hidden');
+            triggerSaveToast('Backup Restored ✓');
+          } catch (err) {
+            triggerSaveToast('Invalid JSON Format');
+          }
+        }
+
+        document.getElementById('importFileInput').addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (ev) => restoreFromJsonString(ev.target.result);
+          reader.readAsText(file);
+        });
+
+        document.getElementById('importPasteBtn').addEventListener('click', () => {
+          const txt = document.getElementById('importPasteInput').value.trim();
+          if (txt) {
+            restoreFromJsonString(txt);
+            document.getElementById('importPasteInput').value = '';
+          }
+        });
+
+        // Safe Two-Step Reset (No confirm() dialog!)
+        document.getElementById('resetProgressBtn').addEventListener('click', (e) => {
+          const btn = e.currentTarget;
+          if (!uiState.resetConfirmArmed) {
+            uiState.resetConfirmArmed = true;
+            btn.textContent = 'Tap again to confirm reset';
+            return;
+          }
+          appState = createFreshState();
+          StorageService.save(false);
+          uiState.resetConfirmArmed = false;
+          btn.textContent = 'Reset All Data';
+          renderAll();
+          document.getElementById('backupModal').classList.add('hidden');
+          triggerSaveToast('Reset Complete');
+        });
+      }
+
+      // -------------------------------------------------------------------
+      // 11. INITIAL BOOTSTRAP
+      // -------------------------------------------------------------------
+      function renderAll() {
+        updateStreakOnActivity();
+        renderHeaderWidgets();
+        updateDashboardMetrics();
+        renderDailyTargets();
+        updateMockAnalytics();
+        if (uiState.activeMainTab === 'syllabus') {
+          renderChaptersList();
+        } else {
+          renderShiftsList();
+        }
+      }
+
+      StorageService.load();
+      bindEvents();
+      renderAll();
+    })();
+  </script>
+</body>
+</html>
